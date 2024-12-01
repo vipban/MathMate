@@ -50,6 +50,52 @@ function factorial(n) {
 }
 
 /**
+ * Format a large number into scientific notation with 10^x
+ * @param {number} num - The number to format
+ * @returns {string} Formatted number as a string
+ */
+function formatToScientificNotation(num) {
+    const exponent = Math.floor(Math.log10(num));
+    const mantissa = (num / Math.pow(10, exponent)).toFixed(2);
+    return `${mantissa} × 10^${exponent}`;
+}
+
+/**
+ * Function to handle factorial result display
+ * @param {number} number - The input number
+ * @param {number} threshold - The threshold for scientific formatting
+ */
+function displayFactorialResult(number, threshold = 1e100) {
+    let fact;
+    try {
+        fact = factorial(number);
+    } catch (error) {
+        document.getElementById("factorialResult").textContent = error.message;
+        return;
+    }
+
+    if (fact > threshold) {
+        const formatted = formatToScientificNotation(fact);
+        document.getElementById("factorialResult").innerHTML = `
+            <span>Factorial (Approx): ${formatted}</span>
+            <button id="showExactFactorial">Show Exact Answer</button>
+            <div id="exactFactorial" style="display: none;">Exact: ${fact}</div>
+        `;
+
+        // Add click listener for the "Show Exact Answer" button
+        document
+            .getElementById("showExactFactorial")
+            .addEventListener("click", () => {
+                const exactDisplay = document.getElementById("exactFactorial");
+                exactDisplay.style.display =
+                    exactDisplay.style.display === "none" ? "block" : "none";
+            });
+    } else {
+        document.getElementById("factorialResult").textContent = `Factorial: ${fact}`;
+    }
+}
+
+/**
  * Function to calculate the Greatest Common Divisor (GCD) of two numbers
  * @param {number} a - First number
  * @param {number} b - Second number
@@ -97,7 +143,6 @@ document.getElementById("calculateButton").addEventListener("click", () => {
     try {
         const primeFactors = primeFactorization(number);
         const lcm = calculateLCM(primeFactors);
-        const fact = factorial(number);
         const digitSum = sumOfDigits(number);
         const perfectSquare = isPerfectSquare(number);
 
@@ -105,12 +150,13 @@ document.getElementById("calculateButton").addEventListener("click", () => {
             `Prime Factorization: ${JSON.stringify(primeFactors)}`;
         document.getElementById("lcmResult").textContent =
             `LCM: ${lcm}`;
-        document.getElementById("factorialResult").textContent =
-            `Factorial: ${fact}`;
         document.getElementById("digitSumResult").textContent =
             `Sum of Digits: ${digitSum}`;
         document.getElementById("perfectSquareResult").textContent =
             `Is Perfect Square: ${perfectSquare}`;
+
+        // Display factorial result with improved formatting
+        displayFactorialResult(number);
     } catch (error) {
         alert(error.message);
     }
