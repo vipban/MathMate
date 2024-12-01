@@ -78,7 +78,7 @@ function displayFactorialResult(number, threshold = 1e100) {
         const formatted = formatToScientificNotation(fact);
         document.getElementById("factorialResult").innerHTML = `
             <span>Factorial (Approx): ${formatted}</span>
-            <button id="showExactFactorial">Show Exact Answer</button>
+            <button id="showExactFactorial">Show Exact Factorial</button>
             <div id="exactFactorial" style="display: none;">Exact: ${fact}</div>
         `;
 

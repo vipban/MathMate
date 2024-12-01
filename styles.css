@@ -39,7 +39,6 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 button {
     background-color: #4caf50;
     color: white;
@@ -52,7 +51,17 @@ button:hover {
     background-color: #45a049;
 }
 
+#showExactFactorial {
+    display: inline-block;
+    margin-left: 1.5rem;
+    width: 40%;
+}
+
 #results {
     margin-top: 20px;
     font-size: 1.2rem;
+}
+
+footer {
+    text-align: center;
 }
