@@ -57,7 +57,7 @@ function factorial(n) {
 function formatToScientificNotation(num) {
     const exponent = Math.floor(Math.log10(num));
     const mantissa = (num / Math.pow(10, exponent)).toFixed(2);
-    return `${mantissa} × 10^${exponent}`;
+    return `${mantissa} × 10<sup>${exponent}</sup>`;
 }
 
 /**
@@ -79,7 +79,7 @@ function displayFactorialResult(number, threshold = 1e20) {
         document.getElementById("factorialResult").innerHTML = `
             <span>Factorial (Approx): ${formatted}</span>
             <button id="showExactFactorial">Show Exact Factorial</button>
-            <div id="exactFactorial" style="display: none;">Exact: ${fact}</div>
+            <div id="exactFactorial" style="display: none;">Exact Factorial: ${fact}</div>
         `;
 
         // Add click listener for the "Show Exact Answer" button
