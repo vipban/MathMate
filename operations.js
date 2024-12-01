@@ -23,21 +23,6 @@ function primeFactorization(n) {
 }
 
 /**
- * Function to calculate the LCM of a number using its prime factorization
- * @param {Object} factors - Prime factors with their exponents
- * @returns {number} The LCM of the number
- */
-function calculateLCM(factors) {
-    let lcm = 1;
-
-    for (let prime in factors) {
-        lcm *= Math.pow(parseInt(prime), factors[prime]);
-    }
-
-    return lcm;
-}
-
-/**
  * Function to calculate the factorial of a number
  * @param {number} n - The number to compute factorial
  * @returns {number} The factorial of the number
@@ -142,7 +127,6 @@ document.getElementById("calculateButton").addEventListener("click", () => {
 
     try {
         const primeFactors = primeFactorization(number);
-        const lcm = calculateLCM(primeFactors);
         const digitSum = sumOfDigits(number);
         const perfectSquare = isPerfectSquare(number);
 
@@ -158,8 +142,6 @@ document.getElementById("calculateButton").addEventListener("click", () => {
         // Display results for all operations
         document.getElementById("primeFactorsResult").textContent =
             `Prime Factorization: ${primeFactorsExpression}`;
-        document.getElementById("lcmResult").textContent =
-            `LCM: ${lcm}`;
         document.getElementById("digitSumResult").textContent =
             `Sum of Digits: ${digitSum}`;
         document.getElementById("perfectSquareResult").textContent =
