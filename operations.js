@@ -65,7 +65,7 @@ function formatToScientificNotation(num) {
  * @param {number} number - The input number
  * @param {number} threshold - The threshold for scientific formatting
  */
-function displayFactorialResult(number, threshold = 1e100) {
+function displayFactorialResult(number, threshold = 1e20) {
     let fact;
     try {
         fact = factorial(number);
@@ -146,8 +146,18 @@ document.getElementById("calculateButton").addEventListener("click", () => {
         const digitSum = sumOfDigits(number);
         const perfectSquare = isPerfectSquare(number);
 
+        // Create the prime factorization multiplication expression
+        let primeFactorsExpression = '';
+        for (const factor in primeFactors) {
+            const count = primeFactors[factor];
+            primeFactorsExpression += `${factor} x `.repeat(count);
+        }
+        // Remove the last " * "
+        primeFactorsExpression = primeFactorsExpression.slice(0, -3);
+
+        // Display results for all operations
         document.getElementById("primeFactorsResult").textContent =
-            `Prime Factorization: ${JSON.stringify(primeFactors)}`;
+            `Prime Factorization: ${primeFactorsExpression}`;
         document.getElementById("lcmResult").textContent =
             `LCM: ${lcm}`;
         document.getElementById("digitSumResult").textContent =
