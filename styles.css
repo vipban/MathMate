@@ -5,6 +5,11 @@ body {
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 header {
@@ -39,6 +44,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 button {
     background-color: #4caf50;
     color: white;
